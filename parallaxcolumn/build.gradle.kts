@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id ("maven-publish")
+    id("maven-publish")
 }
 
 android {
@@ -14,7 +14,13 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+//        kotlinCompilerVersion = "1.5.30"
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
