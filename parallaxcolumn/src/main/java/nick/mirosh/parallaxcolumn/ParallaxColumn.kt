@@ -122,7 +122,7 @@ fun InvertedParallaxColumn(
 }
 
 @Composable
-fun InvertedCard(
+private fun InvertedCard(
     cardModifier: Modifier = Modifier,
     originalBitmap: Bitmap,
     cardHeight: Dp = defaulCardHeightDp,

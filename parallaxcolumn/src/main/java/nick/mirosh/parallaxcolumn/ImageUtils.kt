@@ -12,6 +12,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext
 import java.io.FileInputStream
+import java.io.InputStream
 import java.io.OutputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -32,6 +33,54 @@ fun downloadImage(
     null
 }
 
+
+fun downloadImage2(
+    imageUrl: URLWrapper,
+    bitmapHelper: BitmapHelper
+) = try {
+    val connection = imageUrl.openConnection()
+    connection.doInput = true
+    connection.connect()
+
+    val inputStream = connection.inputStream
+    bitmapHelper.decodeStream(inputStream)
+    connection.disconnect()
+//    BitmapFactory.decodeStream(inputStream)
+} catch (e: Exception) {
+    e.printStackTrace()
+    null
+}
+fun downloadImage3(imageUrl: String): Bitmap? {
+    var connection: HttpURLConnection? = null
+    try {
+        val url = URL(imageUrl)
+        connection = url.openConnection() as HttpURLConnection
+        connection.doInput = true
+        connection.connect()
+
+        connection.inputStream.use { inputStream ->
+            return BitmapFactory.decodeStream(inputStream)
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return null
+    } finally {
+        connection?.disconnect()
+    }
+}
+class BitmapHelper {
+    fun decodeStream(inputStream: InputStream): Bitmap? {
+        return BitmapFactory.decodeStream(inputStream)
+    }
+}
+interface URLProvider {
+    fun openConnection(): HttpURLConnection
+}
+open class URLWrapper(private val url: String): URLProvider {
+    override fun openConnection(): HttpURLConnection {
+        return URL(url).openConnection() as HttpURLConnection
+    }
+}
 fun saveImageToInternalStorage(
     context: Context,
     bitmap: Bitmap,
