@@ -47,7 +47,7 @@ sealed class PictureUri {
 }
 
 @Composable
-fun UriInvertedParallaxColumn(
+fun UriParallaxColumn(
     modifier: Modifier = Modifier,
     pictureUris: List<PictureUri>,
     cardHeight: Dp = defaulCardHeightDp,
@@ -71,7 +71,7 @@ fun UriInvertedParallaxColumn(
 
     val bitmaps = parsedBitmaps.toList().filterNotNull()
     if (bitmaps.isNotEmpty()) {
-        InvertedParallaxColumn(
+        ParallaxColumn(
             modifier = modifier,
             bitmaps = bitmaps,
             cardHeight = cardHeight,
@@ -87,7 +87,7 @@ val defaultColumnModifier = Modifier
     .fillMaxWidth()
 
 @Composable
-fun InvertedParallaxColumn(
+fun ParallaxColumn(
     modifier: Modifier = defaultColumnModifier,
     cardModifier: Modifier = Modifier,
     bitmaps: List<Bitmap>,

@@ -19,7 +19,6 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
-//        kotlinCompilerVersion = "1.5.30"
     }
     buildTypes {
         release {

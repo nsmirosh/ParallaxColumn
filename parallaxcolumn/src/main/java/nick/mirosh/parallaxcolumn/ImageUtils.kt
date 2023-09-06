@@ -17,7 +17,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-fun downloadImage(
+internal fun downloadImage(
     imageUrl: String,
 ) = try {
     val url = URL(imageUrl)
@@ -32,7 +32,7 @@ fun downloadImage(
     null
 }
 
-fun saveImageToInternalStorage(
+internal fun saveImageToInternalStorage(
     context: Context,
     bitmap: Bitmap,
     imageName: String
@@ -49,7 +49,7 @@ fun saveImageToInternalStorage(
     }
 }
 
-fun decodeImageFromInternalStorage(
+internal fun decodeImageFromInternalStorage(
     context: Context,
     imageName: String
 ): Bitmap? {
@@ -62,7 +62,7 @@ fun decodeImageFromInternalStorage(
     }
 }
 
-fun downloadPictureToInternalStorage(
+internal fun downloadPictureToInternalStorage(
     fileName: String,
     url: String,
     context: Context
@@ -74,7 +74,7 @@ fun downloadPictureToInternalStorage(
     }
 }
 
-fun decodeRawResource(resources: Resources, pictureId: Int): Bitmap? {
+internal fun decodeRawResource(resources: Resources, pictureId: Int): Bitmap? {
     val opts = BitmapFactory.Options().apply {
         inScaled =
             false  // ensure the bitmap is not scaled based on device density
@@ -89,7 +89,7 @@ fun decodeRawResource(resources: Resources, pictureId: Int): Bitmap? {
     )
 }
 
-suspend fun loadPictures(
+internal suspend fun loadPictures(
     pictureUri: List<PictureUri>,
     context: Context,
 ) =
@@ -106,7 +106,7 @@ suspend fun loadPictures(
         }.awaitAll()
     }
 
-fun calculateYOffset(
+internal fun calculateYOffset(
     totalColumnScrollFromTop: Int, cardHeight: Int, pictureHeight: Int
 ) = if (totalColumnScrollFromTop <= 0) {
     pictureHeight - cardHeight
@@ -118,13 +118,13 @@ else {
     pictureHeight - cardHeight - (totalColumnScrollFromTop)
 }
 
-fun Context.loadLocalPictures(pictureId: Int) =
+internal fun Context.loadLocalPictures(pictureId: Int) =
     decodeRawResource(
         this.resources, pictureId
     )
 
 
-fun Context.getPictureWithUrl(url: String): Bitmap? {
+internal fun Context.getPictureWithUrl(url: String): Bitmap? {
     val fileName = "img_${System.currentTimeMillis()}"
     downloadPictureToInternalStorage(
         fileName = fileName,
