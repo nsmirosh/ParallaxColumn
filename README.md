@@ -46,7 +46,7 @@ fun ParallaxColumnRunner(bitmaps: List<Bitmap>) {
         "Lukas Dlutko"
     )
 
-    InvertedParallaxColumn(bitmaps = bitmaps) {
+    ParallaxColumn(bitmaps = bitmaps) {
         Box(
             modifier = Modifier
                 .align(Alignment.BottomStart)
