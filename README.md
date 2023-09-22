@@ -4,6 +4,10 @@ This is a library that allows you to build a column with parallax cards
 
 ## Screenshot
 
+
+https://github.com/nsmirosh/ParallaxColumn/assets/5850601/d62c8b0e-485e-448f-b0cc-28b6b7f13477
+
+
 ## Setup
 
 In your root `build.gradle` file add the following lines:
